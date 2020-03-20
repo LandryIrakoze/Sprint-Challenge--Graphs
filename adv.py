@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from world import World
+from graph import Graph
 
 import random
 from ast import literal_eval
@@ -11,9 +12,9 @@ world = World()
 
 # You may uncomment the smaller graphs for development and testing purposes.
 # map_file = "maps/test_line.txt"
-map_file = "maps/test_cross.txt"
+# map_file = "maps/test_cross.txt"
 # map_file = "maps/test_loop.txt"
-# map_file = "maps/test_loop_fork.txt"
+map_file = "maps/test_loop_fork.txt"
 # map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
@@ -27,9 +28,10 @@ player = Player(world.starting_room)
 
 # Fill this out with directions to walk
 # traversal_path = ['n','n']
-traversal_path = ['n','n','s','s','w','w','e','e','s','s','n','n','e','e']
+# traversal_path = ['n','n','s','s','w','w','e','e','s','s','n','n','e','e']
 # traversal_path = ['w','w','s','s','s','e','e','n','n','n','n','s','s','e','e']
 # traversal_path = ['w','w','s','s','e','e','n','n','e','e','w','w','n','n','s','w','w','n','s','e','e','e','e','n']
+traversal_path = []
 
 
 
@@ -53,12 +55,12 @@ else:
 #######
 # UNCOMMENT TO WALK AROUND
 #######
-player.current_room.print_room_description(player)
-while True:
-    cmds = input("-> ").lower().split(" ")
-    if cmds[0] in ["n", "s", "e", "w"]:
-        player.travel(cmds[0], True)
-    elif cmds[0] == "q":
-        break
-    else:
-        print("I did not understand that command.")
+# player.current_room.print_room_description(player)
+# while True:
+#     cmds = input("-> ").lower().split(" ")
+#     if cmds[0] in ["n", "s", "e", "w"]:
+#         player.travel(cmds[0], True)
+#     elif cmds[0] == "q":
+#         break
+#     else:
+#         print("I did not understand that command.")
