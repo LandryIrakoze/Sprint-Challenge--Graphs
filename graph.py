@@ -4,7 +4,6 @@ Simple graph implementation
 from util import Stack, Queue  # These may come in handy
 
 class Graph:
-
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
     def __init__(self):
         self.vertices = {}
@@ -67,7 +66,6 @@ class Graph:
                 # Enqueue all it's neighbors
                 for neighbor in self.get_neighbors(v):
                     q.enqueue(neighbor)
-
 
     def dft(self, starting_vertex):
         """
