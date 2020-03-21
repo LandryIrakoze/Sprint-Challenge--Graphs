@@ -35,26 +35,52 @@ player = Player(world.starting_room)
 traversal_path = []
 
 # Traversal Algorithm
+def available_paths():
+    return player.current_room.get_exits()
+
+def get_coords():
+    return player.current_room.get_coords()
+
+def get_coords_in_direction(direction):
+    return player.current_room.get_room_in_direction(direction).get_coords()
+
+def is_dead_end():
+    if len(available_paths()) == 1:
+        return True
+    return False
+
+def get_room_id():
+    return player.current_room.id
+
+def get_path(current_room, next_room):
+    if current_room[0] == next_room[0] and next_room[1] > current_room[1]:
+        return "n"
+    elif current_room[0] == next_room[0] and current_room[1] > next_room[1]:
+        return "s"
+    elif current_room[1] == next_room[1] and next_room[0] > current_room[0]:
+        return "e"
+    elif current_room[1] == next_room[1] and current_room[0] > next_room[0]:
+        return "w"
+
 player.current_room.print_room_description(player)
-print(f'room id: {player.current_room.id}')
-print(f'room exits: {player.current_room.get_exits()}')
-print(f'player.travel(direction)')
-
-
-def dft(self, starting_vertex):
-    s = Stack()
-    s.push(starting_vertex)
-    visited = set()
-    while s.size() > 0:
-        v = s.pop()
-        if v not in visited:
-            print(v)
-            visited.add(v)
-            for room_exit in player.current_room.get_exits():
-                s.push(player.current_room.get_room_in_direction(room_exit))
+print(f'room id: {get_room_id()}')
+print(f'room exits: {available_paths()}')
+print(f'room_coords: {get_coords()}')
+print(f'room_coords_north: {get_coords_in_direction("n")}')
+print(f'get_path_north: {get_path(get_coords(), get_coords_in_direction("n"))}')
 
 
 
+
+
+# bfs to find shortest path to dead end
+# dft that path (player.travel)
+# keep copy of that path and reverse that path (player.travel)
+# add traversed path to visited
+
+# repeat 1-4 for the rest of unvisited nodes
+# capture coordinates to get cardinal directions
+# dead end, only has one exit
 
 # TRAVERSAL TEST
 visited_rooms = set()
