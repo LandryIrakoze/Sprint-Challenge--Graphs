@@ -35,6 +35,8 @@ player = Player(world.starting_room)
 traversal_path = []
 
 # Traversal Algorithm
+
+# Helper Functions
 def available_paths():
     return player.current_room.get_exits()
 
@@ -52,14 +54,14 @@ def is_dead_end():
 def get_room_id():
     return player.current_room.id
 
-def get_path(current_room, next_room):
-    if current_room[0] == next_room[0] and next_room[1] > current_room[1]:
+def get_path(direction):
+    if get_coords()[0] == get_coords_in_direction(direction)[0] and get_coords_in_direction(direction)[1] > get_coords()[1]:
         return "n"
-    elif current_room[0] == next_room[0] and current_room[1] > next_room[1]:
+    elif get_coords()[0] == get_coords_in_direction(direction)[0] and get_coords()[1] > get_coords_in_direction(direction)[1]:
         return "s"
-    elif current_room[1] == next_room[1] and next_room[0] > current_room[0]:
+    elif get_coords()[1] == get_coords_in_direction(direction)[1] and get_coords_in_direction(direction)[0] > get_coords()[0]:
         return "e"
-    elif current_room[1] == next_room[1] and current_room[0] > next_room[0]:
+    elif get_coords()[1] == get_coords_in_direction(direction)[1] and get_coords()[0] > get_coords_in_direction(direction)[0]:
         return "w"
 
 player.current_room.print_room_description(player)
@@ -67,11 +69,7 @@ print(f'room id: {get_room_id()}')
 print(f'room exits: {available_paths()}')
 print(f'room_coords: {get_coords()}')
 print(f'room_coords_north: {get_coords_in_direction("n")}')
-print(f'get_path_north: {get_path(get_coords(), get_coords_in_direction("n"))}')
-
-
-
-
+print(f'get_path_north: {get_path("n")}')
 
 # bfs to find shortest path to dead end
 # dft that path (player.travel)
@@ -81,6 +79,8 @@ print(f'get_path_north: {get_path(get_coords(), get_coords_in_direction("n"))}')
 # repeat 1-4 for the rest of unvisited nodes
 # capture coordinates to get cardinal directions
 # dead end, only has one exit
+
+
 
 # TRAVERSAL TEST
 visited_rooms = set()
